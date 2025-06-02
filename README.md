@@ -27,9 +27,11 @@ FuturistAi is a lightweight Python-based Flask web application that allows users
 Additional details:
 
 - **Templating Engine**: Jinja2  
-- **OpenAI API**: Accessed through `openai` Python SDK  
+- **OpenAI API**: Accessed using the official `openai` Python SDK  
+- **Astrology Calculation**: `swisseph` (Swiss Ephemeris)  
+- **Time & Location Handling**: `datetime`, `pytz`, `geopy`, `timezonefinder`  
 - **Frontend Framework**: Bootstrap 5  
-- **Environment Variables**: Managed using `python-dotenv`  
+- **Environment Variables**: Managed using `python-dotenv` 
 
 ## Getting Started
 
