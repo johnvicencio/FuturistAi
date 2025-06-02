@@ -28,7 +28,7 @@
   />
 </section>
 
-<section class="text-center" style="background-image: url('/static/img/mountainiced.avif'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<section class="text-center" style="background-image: url('{{ url_for('static', filename='img/mountainiced.avif') }}'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
   <h1 class="mb-4">GitHub</h1>
   <div class="d-flex gap-3">
       <a href="https://github.com/johnvicencio/FuturistAi" target="_blank" class="btn btn-light btn-lg">

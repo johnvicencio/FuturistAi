@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Home - Ask AI{% endblock %}
+{% block title %}Home - Ask FuturistAi{% endblock %}
 {% block content %}
 
 <section class="container mt-4 d-flex align-items-center">
@@ -62,7 +62,7 @@
   {% endif %}
 </section>
 
-<section id="github" class="text-center text-white" style="background-image: url('/static/img/mountain.jpg'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<section id="github" class="text-center text-white" style="background-image: url('{{ url_for('static', filename='img/mountain.jpg') }}'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
   <h1 class="mb-4">GitHub</h1>
   <div class="d-flex gap-3">
       <a href="https://github.com/johnvicencio/FuturistAi" target="_blank" class="btn btn-light btn-lg">
