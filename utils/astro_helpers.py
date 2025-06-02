@@ -3,14 +3,29 @@ from datetime import datetime
 from geopy.geocoders import Nominatim
 from timezonefinder import TimezoneFinder
 import pytz
+import functools
 
 swe.set_ephe_path("static/lib/ephemeris")
 
-def calculate_life_path_number(birth_date_str):
+geolocator = Nominatim(user_agent="astro_app")
+tf = TimezoneFinder()
+
+@functools.lru_cache(maxsize=512)
+def cached_geocode(place):
+    try:
+        return geolocator.geocode(place)
+    except Exception:
+        return None
+
+def calculate_life_path_number(birth_date_str, reduce_master=True):
     digits = ''.join(d for d in birth_date_str if d.isdigit())
     total = sum(int(d) for d in digits)
-    while total > 9:
-        total = sum(int(d) for d in str(total))
+    if reduce_master:
+        while total > 9 and total not in [11, 22, 33]:
+            total = sum(int(d) for d in str(total))
+    else:
+        while total > 9:
+            total = sum(int(d) for d in str(total))
     return total
 
 def get_chinese_zodiac(year):
@@ -27,19 +42,22 @@ def get_sign(deg):
     return signs[int(deg // 30)]
 
 def calculate_sun_moon_asc(birth_date, birth_time, place):
-    geolocator = Nominatim(user_agent="astro_app")
-    location = geolocator.geocode(place)
+    location = cached_geocode(place)
     if not location:
-        raise ValueError("Invalid location")
+        raise ValueError("Location not found. Please enter a more specific place name.")
     lat, lon = location.latitude, location.longitude
 
-    tf = TimezoneFinder()
-    timezone_str = tf.timezone_at(lat=lat, lng=lon)
+    timezone_str = tf.timezone_at(lat=lat, lng=lon) or tf.closest_timezone_at(lat=lat, lng=lon)
     if not timezone_str:
-        raise ValueError("Could not determine timezone")
+        raise ValueError("Could not determine timezone. Try another location.")
 
     local_tz = pytz.timezone(timezone_str)
-    naive_dt = datetime.strptime(f"{birth_date} {birth_time}", "%Y-%m-%d %H:%M")
+
+    try:
+        naive_dt = datetime.strptime(f"{birth_date} {birth_time}", "%Y-%m-%d %H:%M")
+    except ValueError:
+        raise ValueError("Invalid time format. Please use HH:MM in 24-hour format.")
+
     local_dt = local_tz.localize(naive_dt)
     utc_dt = local_dt.astimezone(pytz.utc)
 
