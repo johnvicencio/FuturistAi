@@ -60,6 +60,15 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+### Setting Environment Variables with a .env File
+
+Create a file named .env in the project root folder with your environment variables, for example:
+
+```.env
+OPENAI_API_KEY=your_openai_api_key_here
+FLASK_ENV=development
+```
+
 ### Running the App Locally
 
 Make sure your `app.py` file has the following block at the end:
