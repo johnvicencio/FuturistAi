@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Home - Ask AI{% endblock %}
+{% block content %}
+
+<section class="container mt-4 d-flex align-items-center">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <h1 class="mb-3">I'll predict your future</h1>
+      <h4 class="mb-4">...I am FuturistAi</h4>
+    </div>
+
+    <form method="POST">
+      <div class="row g-3 justify-content-center">
+        <div class="col-md-3">
+          <label class="form-label">Full Name at Birth</label>
+          <input type="text" name="full_name" class="form-control" placeholder="Full Name" value="{{ full_name }}" required />
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Birth Date</label>
+          <input type="date" name="birth_date" class="form-control" value="{{ birth_date }}" required />
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label">Exact Birth Time</label>
+          <input type="time" name="birth_time" class="form-control" value="{{ birth_time }}" />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label">Birthplace (City, State, Country)</label>
+          <input type="text" name="birthplace" class="form-control" placeholder="e.g., Los Angeles, CA, USA" maxlength="255" value="{{ birthplace }}" required />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Do you have a question to ask?</label>
+          <textarea name="custom_question" class="form-control" placeholder="Ask a question (optional)" maxlength="500" rows="3">{{ custom_question or '' }}</textarea>
+        </div>
+
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  {% if prediction %}
+  <div class="modal fade" id="predictionModal" tabindex="-1" aria-labelledby="predictionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="predictionModalLabel">Your Future Prediction</h5>
+          <button type="button" class="done-button btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{ prediction }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="done-button btn btn-primary">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+<section id="github" class="text-center text-white" style="background-image: url('/static/img/mountain.jpg'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1 class="mb-4">GitHub</h1>
+  <div class="d-flex gap-3">
+      <a href="https://github.com/johnvicencio/FuturistAi" target="_blank" class="btn btn-light btn-lg">
+      FuturistAi Repo
+      </a>
+      <a href="https://github.com/johnvicencio" target="_blank" class="btn btn-outline-light btn-lg">
+      John's Repository
+      </a>
+  </div>
+</section>
+
+<section id="demo" class="w-100 my-5 text-center">
+  <h2 class="mb-4">Web App Demo</h2>
+  <img 
+    src="{{ url_for('static', filename='img/futuristai-demo.gif') }}" 
+    alt="FuturistAi Demo" 
+    class="img-fluid w-100" 
+    style="max-height: 600px; object-fit: contain;"
+  />
+</section>
+
+{% endblock %}

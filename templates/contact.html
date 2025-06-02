@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<section class="container mt-4">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100px;">
+  <div class="d-flex align-items-center gap-4">
+    <div>
+      <h1 class="mb-0">Contact</h1>
+      <h2 class="mb-0">Send a Message</h2>
+      <p class="mb-0">Please send me a message here.</p>
+    </div>
+    <div>
+      <a href="https://johnvicencio.com/#contact" target="_blank" class="btn btn-primary">
+        Email John Vicencio
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="w-100 my-5 text-center">
+  <h2 class="mb-4">FuturistAi in Action</h2>
+  <img 
+    src="{{ url_for('static', filename='img/futuristai-demo.gif') }}" 
+    alt="FuturistAi Demo" 
+    class="img-fluid w-100" 
+    style="max-height: 600px; object-fit: contain;"
+  />
+</section>
+
+<section class="text-center" style="background-image: url('/static/img/mountainiced.avif'); background-size: cover; background-position: center; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <h1 class="mb-4">GitHub</h1>
+  <div class="d-flex gap-3">
+      <a href="https://github.com/johnvicencio/FuturistAi" target="_blank" class="btn btn-light btn-lg">
+      FuturistAi Repo
+      </a>
+      <a href="https://github.com/johnvicencio" target="_blank" class="btn btn-outline-light btn-lg">
+      John's Repository
+      </a>
+  </div>
+</section>
+{% endblock %}
