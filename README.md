@@ -10,6 +10,7 @@ FuturistAi is a modern web application built with Flask and front-end technologi
 - GitHub repo link button  
 
 ## Demo
+[View Demo](#demo)
 
 ![FuturistAi Demo](https://github.com/johnvicencio/FuturistAi/blob/main/static/img/futuristai-demo.gif?raw=true)
 
