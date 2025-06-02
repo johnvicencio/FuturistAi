@@ -1,97 +1,113 @@
 # FuturistAi
 
-FuturistAi is a modern web application built with Flask and front-end technologies, showcasing simple AI-driven functionality and clean design. It features a responsive navbar, routing, and can be deployed to services like Render.
+FuturistAi is a modern web application built with Flask and front-end technologies, showcasing simple AI-driven functionality and clean design. It features a responsive navbar, routing, and a GitHub repository link button.
 
 ## Features
 
-- Python Flask backend
-- Mobile-friendly layout using Bootstrap or MDB
-- Clean and minimal navigation UI
-- GitHub repo link button
-- Easy deployment to Render
+- Python Flask backend  
+- Mobile-friendly layout using Bootstrap or MDB  
+- Clean and minimal navigation UI  
+- GitHub repo link button  
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.x
-- pip
-- Git
+Install the following:
 
-### Installation
+#### On macOS (using Homebrew):
+
+```bash
+brew install python
+brew install git
+```
+
+#### On Windows:
+
+Download and install:
+
+- Python from https://www.python.org/downloads/
+- Git from https://git-scm.com/download/win
+
+Ensure `python` and `git` are available in your terminal or command prompt.
+
+### Clone the Repository
 
 ```bash
 git clone https://github.com/johnvicencio/FuturistAi.git
 cd FuturistAi
 ```
 
-Create and activate a virtual environment:
+### Create and Activate a Virtual Environment
+
+#### On macOS/Linux:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### On Windows:
 
 ```bash
 python -m venv venv
-source venv/bin/activate        # For Windows: venv\Scripts\activate
+venv\Scripts\activate
 ```
 
-Install the required packages:
+### Install Required Packages
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application locally:
+### Running the App Locally
+
+Make sure your `app.py` file has the following block at the end:
+
+```python
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+Then run:
 
 ```bash
 python app.py
 ```
 
-Visit: [http://localhost:5000](http://localhost:5000)
-
-## Deployment to Render
-
-1. Make sure you have a `requirements.txt` and `Procfile` in the root folder.
-
-**requirements.txt**
-```
-Flask
-gunicorn
-```
-
-**Procfile**
-```
-web: gunicorn app:app
-```
-
-2. Push your code to your GitHub repo (e.g. `https://github.com/johnvicencio/FuturistAi`).
-
-3. Go to [https://render.com](https://render.com) and:
-
-- Create a new Web Service
-- Connect your GitHub account and select your FuturistAi repo
-- Set the build command:
+Or, if you prefer using Flask CLI:
 
 ```bash
-pip install -r requirements.txt
+export FLASK_APP=app.py           # macOS/Linux
+set FLASK_APP=app.py              # Windows (Command Prompt)
+$env:FLASK_APP = "app.py"         # Windows (PowerShell)
+
+flask run
 ```
 
-- Set the start command:
+### View the App
 
-```bash
-gunicorn app:app
+Open your browser and go to:
+
 ```
-
-- Choose Python environment and deploy
+http://localhost:5000
+```
 
 ## Project Structure
 
 ```
 FuturistAi/
 ├── static/
-│   └── img/
+│   ├── css/
+│   ├── img/
+│   └── js/
 ├── templates/
+│   ├── about.html
+│   ├── base.html
+│   ├── contact.html
 │   └── index.html
 ├── app.py
 ├── requirements.txt
-├── Procfile
 ├── README.md
 ```
 
@@ -101,4 +117,5 @@ MIT License
 
 ---
 
-Developed by John Vicencio, [https://johnvicencio.com](https://johnvicencio.com)
+Developed by John Vicencio  
+https://johnvicencio.com
