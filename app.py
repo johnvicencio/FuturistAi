@@ -3,8 +3,10 @@ from datetime import datetime
 
 from utils.astro_helpers import calculate_life_path_number, get_chinese_zodiac, fetch_astrological_signs
 from utils.prompt_helpers import native_astro_prediction
+from utils.url_helpers import override_url_for
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.context_processor(override_url_for) 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
