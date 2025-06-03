@@ -16,15 +16,6 @@ services:
       dir: static
       url: /static
     
-    # Environment variables
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: PYTHON_VERSION
-        value: 3.9.13  # Match your local Python version
-      - key: GUNICORN_CMD_ARGS
-        value: "--workers=1 --threads=4 --worker-class=gthread"
-    
     # Health check path
     healthCheckPath: /
     
