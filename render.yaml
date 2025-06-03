@@ -2,9 +2,31 @@ services:
   - type: web
     name: futuristai
     env: python
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: |
+      pip install -r requirements.txt
+      python -c "from app import app; app.config['TEMPLATES_AUTO_RELOAD'] = True"
     startCommand: "gunicorn app:app"
     plan: free
     branch: main
     region: oregon
     rootDir: .
+    
+    # Static files configuration
+    static:
+      dir: static
+      url: /static
+    
+    # Environment variables
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.9.13  # Match your local Python version
+      - key: GUNICORN_CMD_ARGS
+        value: "--workers=1 --threads=4 --worker-class=gthread"
+    
+    # Health check path
+    healthCheckPath: /
+    
+    # Auto-deploy from GitHub
+    autoDeploy: true
